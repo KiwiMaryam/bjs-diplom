@@ -48,6 +48,54 @@ fetchCurrencyRates();
 // Установка интервала для обновления курсов валют раз в минуту
 setInterval(fetchCurrencyRates, 60000);
 
+// Создание объекта типа FavoritesWidget
+const favoritesWidget = new FavoritesWidget();
+
+// Функция для запроса начального списка избранного
+function fetchFavorites() {
+    ApiConnector.getFavorites((response) => {
+        if (response.success) {
+            favoritesWidget.clearTable();
+            favoritesWidget.fillTable(response.data);
+            favoritesWidget.updateUsersList(response.data); // Обновление списка пользователей
+        } else {
+            console.error("Ошибка получения списка избранного:", response.error);
+        }
+    });
+}
+
+// Вызов функции для получения начального списка избранного
+fetchFavorites();
+
+// Реализация добавления пользователя в список избранных
+favoritesWidget.addUserCallback = (data) => {
+    ApiConnector.addUserToFavorites(data, (response) => {
+        if (response.success) {
+            favoritesWidget.clearTable();
+            favoritesWidget.fillTable(response.data);
+            favoritesWidget.updateUsersList(response.data);
+            favoritesWidget.setMessage("Пользователь успешно добавлен в избранное.");
+        } else {
+            favoritesWidget.setMessage("Ошибка добавления пользователя: " + response.error);
+        }
+    });
+};
+
+// Реализация удаления пользователя из избранного
+favoritesWidget.removeUserCallback = (data) => {
+    ApiConnector.removeUserFromFavorites(data, (response) => {
+        if (response.success) {
+            favoritesWidget.clearTable();
+            favoritesWidget.fillTable(response.data);
+            favoritesWidget.updateUsersList(response.data);
+            favoritesWidget.setMessage("Пользователь успешно удален из избранного.");
+        } else {
+            favoritesWidget.setMessage("Ошибка удаления пользователя: " + response.error);
+        }
+    });
+};
+
+
 // Создание объекта типа MoneyManager
 const moneyManager = new MoneyManager();
 
