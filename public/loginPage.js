@@ -28,6 +28,3 @@ class UserForm {
         });
     }
 }
-
-// Создаем объект класса UserForm
-const userForm = new UserForm();
