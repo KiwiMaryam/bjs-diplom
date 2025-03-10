@@ -57,7 +57,7 @@ function fetchFavorites() {
         if (response.success) {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
-            favoritesWidget.updateUsersList(response.data); // Обновление списка пользователей
+            favoritesWidget.getData(response.data); // Обновление списка пользователей
         } else {
             console.error("Ошибка получения списка избранного:", response.error);
         }
@@ -73,7 +73,7 @@ favoritesWidget.addUserCallback = (data) => {
         if (response.success) {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
-            favoritesWidget.updateUsersList(response.data);
+            favoritesWidget.getData(response.data);
             favoritesWidget.setMessage("Пользователь успешно добавлен в избранное.");
         } else {
             favoritesWidget.setMessage("Ошибка добавления пользователя: " + response.error);
@@ -87,7 +87,7 @@ favoritesWidget.removeUserCallback = (data) => {
         if (response.success) {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
-            favoritesWidget.updateUsersList(response.data);
+            favoritesWidget.getData(response.data);
             favoritesWidget.setMessage("Пользователь успешно удален из избранного.");
         } else {
             favoritesWidget.setMessage("Ошибка удаления пользователя: " + response.error);
