@@ -31,7 +31,7 @@ const ratesBoard = new RatesBoard();
 // Функция для получения курсов валют
 function fetchCurrencyRates() {
     // Вызываем статический метод getRates из класса ApiConnector
-    ApiConnector.getRates((response) => {
+    ApiConnector.getStocks((response) => {
         if (response.success) {
             // Очищаем таблицу и заполняем её новыми данными
             ratesBoard.clearTable();
