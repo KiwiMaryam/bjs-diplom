@@ -25,22 +25,21 @@ ApiConnector.current((response) => {
     }
 });
 
-// Получение текущих курсов валюты
+// Создаем объект типа RatesBoard
 const ratesBoard = new RatesBoard();
 
+// Функция для получения курсов валют
 function fetchCurrencyRates() {
-    if (typeof ApiConnector.getRates === 'function') {
-        ApiConnector.getRates((response) => {
-            if (response.success) {
-                ratesBoard.clearTable();
-                ratesBoard.fillTable(response.data);
-            } else {
-                console.error("Ошибка получения курсов валют:", response.error);
-            }
-        });
-    } else {
-        console.error("Метод getRates не существует в ApiConnector.");
-    }
+    // Вызываем статический метод getRates из класса ApiConnector
+    ApiConnector.getRates((response) => {
+        if (response.success) {
+            // Очищаем таблицу и заполняем её новыми данными
+            ratesBoard.clearTable();
+            ratesBoard.fillTable(response.data);
+        } else {
+            console.error("Ошибка получения курсов валют:", response.error);
+        }
+    });
 }
 
 // Вызов функции для получения текущих валют
