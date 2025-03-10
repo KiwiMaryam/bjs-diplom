@@ -10,7 +10,7 @@ class UserForm {
         ApiConnector.login(data, (response) => {
             console.log(response); // Логируем ответ сервера
             if (response.success) {
-                location.reload(); // Обновляем страницу при успешной авторизации
+                // location.reload(); // Обновляем страницу при успешной авторизации
             } else {
                 alert(`Ошибка авторизации: ${response.error}`); // Выводим ошибку
             }
@@ -21,7 +21,7 @@ class UserForm {
         ApiConnector.register(data, (response) => {
             console.log(response); // Логируем ответ сервера
             if (response.success) {
-                location.reload(); // Обновляем страницу при успешной регистрации
+                // location.reload(); // Обновляем страницу при успешной регистрации
             } else {
                 alert(`Ошибка регистрации: ${response.error}`); // Выводим ошибку
             }
