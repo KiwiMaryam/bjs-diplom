@@ -29,14 +29,18 @@ ApiConnector.current((response) => {
 const ratesBoard = new RatesBoard();
 
 function fetchCurrencyRates() {
-    ApiConnector.getRates((response) => {
-        if (response.success) {
-            ratesBoard.clearTable();
-            ratesBoard.fillTable(response.data);
-        } else {
-            console.error("Ошибка получения курсов валют:", response.error);
-        }
-    });
+    if (typeof ApiConnector.getRates === 'function') {
+        ApiConnector.getRates((response) => {
+            if (response.success) {
+                ratesBoard.clearTable();
+                ratesBoard.fillTable(response.data);
+            } else {
+                console.error("Ошибка получения курсов валют:", response.error);
+            }
+        });
+    } else {
+        console.error("Метод getRates не существует в ApiConnector.");
+    }
 }
 
 // Вызов функции для получения текущих валют
