@@ -48,3 +48,41 @@ fetchCurrencyRates();
 // Установка интервала для обновления курсов валют раз в минуту
 setInterval(fetchCurrencyRates, 60000);
 
+// Создание объекта типа MoneyManager
+const moneyManager = new MoneyManager();
+
+// Реализация пополнения баланса
+moneyManager.addMoneyCallback = function(data) {
+    ApiConnector.addMoney(data, (response) => {
+        if (response.success) {
+            ProfileWidget.showProfile(response.data);
+            moneyManager.setMessage(true, "Баланс успешно пополнен!");
+        } else {
+            moneyManager.setMessage(false, `Ошибка: ${response.error}`);
+        }
+    });
+};
+
+// Реализация конвертирования валюты
+moneyManager.conversionMoneyCallback = function(data) {
+    ApiConnector.convertMoney(data, (response) => {
+        if (response.success) {
+            ProfileWidget.showProfile(response.data);
+            moneyManager.setMessage(true, "Конвертация валюты успешна!");
+        } else {
+            moneyManager.setMessage(false, `Ошибка: ${response.error}`);
+        }
+    });
+};
+
+// Реализация перевода валюты
+moneyManager.sendMoneyCallback = function(data) {
+    ApiConnector.transferMoney(data, (response) => {
+        if (response.success) {
+            ProfileWidget.showProfile(response.data);
+            moneyManager.setMessage(true, "Перевод валюты успешен!");
+        } else {
+            moneyManager.setMessage(false, `Ошибка: ${response.error}`);
+        }
+    });
+};
