@@ -30,7 +30,7 @@
 "use strict"; // Включаем строгий режим
 
 // Создаем объект класса UserForm
-// const userForm = new UserForm();
+const userForm = new UserForm();
 
 // Присваиваем свойству loginFormCallback функцию
 userForm.loginFormCallback = function(data) {
