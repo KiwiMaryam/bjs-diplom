@@ -9,7 +9,7 @@ userForm.loginFormCallback = function(data) {
 
         // Проверяем успешность запроса
         if (response.success) {
-            // Если успешный запрос, обновляем страницу
+            // Если успешный запрос, обновляем стрaницу
             location.reload();
         } else {
             // В случае ошибки выводим сообщение
