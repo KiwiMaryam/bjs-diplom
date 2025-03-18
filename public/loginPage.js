@@ -13,7 +13,7 @@ userForm.loginFormCallback = function(data) {
             location.reload();
         } else {
             // В случае ошибки выводим сообщение
-            setLoginErrorMessage(response.error || "Ошибка авторизации");
+            userForm.setLoginErrorMessage(response.error || "Ошибка авторизации");
         }
     });
 };
@@ -30,7 +30,7 @@ userForm.registerFormCallback = function(data) {
             location.reload();
         } else {
             // В случае ошибки выводим сообщение
-            setRegisterErrorMessage(response.error || "Ошибка регистрации");
+            userForm.setRegisterErrorMessage(response.error || "Ошибка регистрации");
         }
     });
 };

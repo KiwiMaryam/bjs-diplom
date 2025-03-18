@@ -68,9 +68,9 @@ favoritesWidget.addUserCallback = (data) => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
-            favoritesWidget.setMessage("green", "Пользователь успешно добавлен в избранное."); // Указан цвет
+            favoritesWidget.setMessage('green', 'Пользователь успешно добавлен в избранное.'); // Указан цвет
         } else {
-            favoritesWidget.setMessage("red", "Ошибка добавления пользователя: " + response.error); // Указан цвет
+            favoritesWidget.setMessage('red', 'Ошибка добавления пользователя: ' + response.error); // Указан цвет
         }
     });
 };
