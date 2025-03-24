@@ -82,9 +82,9 @@ favoritesWidget.removeUserCallback = (data) => {
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(response.data);
             moneyManager.updateUsersList(response.data);
-            favoritesWidget.setMessage(true, "Пользователь успешно удален из избранного."); // Указан цвет
+            favoritesWidget.setMessage(true, "Пользователь успешно удален из избранного.");
         } else {
-            favoritesWidget.setMessage(false, "Ошибка удаления пользователя: " + response.error); // Указан цвет
+            favoritesWidget.setMessage(false, "Ошибка удаления пользователя: " + response.error);
         }
     });
 };
